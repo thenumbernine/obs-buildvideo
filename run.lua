@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 require 'ext'
 local fs = table()
-for f in file'.':dir() do
+for f in path'.':dir() do
 	if f:sub(-3) == '.ts' then
 		fs:insert(f)
 	end
@@ -18,11 +18,11 @@ function val(s)
 	return assert(tonumber(i))
 end
 fs:sort(function(a,b) return val(a) < val(b) end)
-file'input.txt':write(fs:mapi(function(s) return "file '"..s.."'" end):concat'\n'..'\n')
+path'input.txt':write(fs:mapi(function(s) return "file '"..s.."'" end):concat'\n'..'\n')
 local outfn
 for i=1,math.huge do
 	outfn = 'out'..i..'.mp4'
-	if not file(outfn):exists() then break end
+	if not path(outfn):exists() then break end
 end
 local cmd = 'ffmpeg -f concat -safe 0 -i input.txt '..outfn
 print('>'..cmd)
