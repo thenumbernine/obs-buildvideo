@@ -2,8 +2,8 @@
 require 'ext'
 local fs = table()
 for f in path'.':dir() do
-	if f:sub(-3) == '.ts' then
-		fs:insert(f)
+	if f.path:sub(-3) == '.ts' then
+		fs:insert(f.path)
 	end
 end
 local base = {}
